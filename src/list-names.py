@@ -10,7 +10,17 @@ def main():
     )
     args = argparser.parse_args()
 
-    print(f"Now I need to process the records in {args.fastq}")
+    fastq = ""
+    with open(args.fastq.name, "r") as file:
+        fastq = file.read()
+
+    reads = fastq.split("@")
+    #print(reads)
+    for i in range(1, len(reads)):
+        readName, seq, _ = reads[i].split("\n")
+        print(readName)
+
+    #print(f"Now I need to process the records in {args.fastq}")
 
 
 if __name__ == '__main__':
